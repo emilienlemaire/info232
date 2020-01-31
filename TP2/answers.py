@@ -19,7 +19,9 @@ def answer_01(data):
 
     """
     # TODO : standardize data
-    scaled_data = data
+    intermediate_data = df.iloc[ : , : len(data.columns) - 1]
+    scaled_data = (intermediate_data - intermediate_data.mean()) / intermediate_data.std()
+    scaled_data.insert(len(scaled_data.columns), data.columns[-1], data.iloc[ : , -1:])
     return scaled_data
 
 
@@ -32,9 +34,9 @@ def answer_02():
         nearest_neighbors class
     """
     # Wrong classifier
-    from sklearn.naive_bayes import GaussianNB
+    from sklearn.neighbors import KNeighborsClassifier
 
-    return GaussianNB
+    return KNeighborsClassifier(1)
 
 
 def answer_03():
@@ -47,7 +49,7 @@ def answer_03():
     Returns
     -------
     """
-    from sklearn.metrics import accuracy_score as sklearn_metric
+    from sklearn.metrics import balanced_accuracy_score as sklearn_metric
     return sklearn_metric
 
 
@@ -64,7 +66,7 @@ def answer_04():
     YES = 'YES'
     NO = 'NO'
     # Return YES or NO
-    return None
+    return YES
 
 
 def answer_05():
@@ -80,7 +82,7 @@ def answer_05():
     CASE3 = "CS"
     CASE4 = "CROP"
     # Return CASE1, CASE2, CASE3 or CASE4
-    return None
+    return CASE3
 
 
 
@@ -92,7 +94,7 @@ def answer_06():
     under_fitting = "under-fitting"
     over_fitting  = "over-fitting"
     # Return under_fitting or over_fitting
-    return None
+    return over_fitting
 
 
 def answer_07():
@@ -102,7 +104,7 @@ def answer_07():
     under_fitting = "under-fitting"
     over_fitting  = "over-fitting"
     # Return under_fitting or over_fitting
-    return None
+    return under_fitting
 
 
 def answer_08():
@@ -113,7 +115,7 @@ def answer_08():
          "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
          "Naive Bayes", "QDA"]
 
-    overfitting_models = ["Replace", "with", "model", "names", "from", "the",  "list", "above"]
+    overfitting_models = [2,4,5]
     return overfitting_models
 
 
@@ -125,7 +127,7 @@ def answer_09():
          "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
          "Naive Bayes", "QDA"]
 
-    underfitting_models = ["Replace", "with", "model", "names", "from", "the", "list", "above"]
+    underfitting_models = [1,8]
     return underfitting_models
 
 
